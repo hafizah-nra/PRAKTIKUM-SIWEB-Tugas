@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TumblrVault – Sistem Manajemen Penjualan Tumbler</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <a class="navbar-brand-custom" href="index.html">Tumblr<span>Vault</span></a>
+      <button class="navbar-toggler navbar-toggler-custom" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom active" href="#beranda">
+              <i class="bi bi-house me-1"></i>Beranda
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#statistik">
+              <i class="bi bi-bar-chart me-1"></i>Statistik
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#produk">
+              <i class="bi bi-box me-1"></i>Produk
+            </a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-primary-custom" href="input.html">
+              <i class="bi bi-plus me-1"></i>Tambah Produk
+            </a>
+          </li>
+          <li class="nav-item ms-lg-1">
+            <button class="btn-wishlist-nav" data-bs-toggle="modal" data-bs-target="#wishlistModal" title="Wishlist Saya">
+              <i class="bi bi-heart-fill"></i>
+              <span class="wishlist-badge" id="wishlist-badge" style="display:none;">0</span>
+            </button>
+          </li>
+        </ul>
+        <button id="btn-theme" title="Ganti Tema">
+          <i class="bi bi-moon-stars-fill" id="theme-icon"></i>
+          <span id="theme-label">Mode Gelap</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section" id="beranda">
+    <div class="container">
+      <div class="row align-items-center min-vh-hero gy-4">
+
+        <div class="col-lg-5">
+          <p class="hero-eyebrow">Sistem Manajemen Tumbler</p>
+          <h1 class="hero-title">
+            Kelola Stok &amp;<br>Penjualan dengan<br>Mudah.
+          </h1>
+          <p class="hero-desc">
+            Platform sederhana untuk mencatat produk, memantau stok, dan melihat penjualan tumbler Anda.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="tambah.html" class="btn btn-primary-custom">
+              <i class="bi bi-plus-circle me-2"></i>Tambah Produk
+            </a>
+            <a href="#produk" class="btn btn-outline-custom">
+              <i class="bi bi-eye me-2"></i>Lihat Produk
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="hero-img-container">
+            <img src="assets/bg.jpg"
+                 onerror="this.onerror=null; this.src=''; this.parentElement.classList.add('hero-img-fallback');"
+                 alt="Tumbler produk unggulan"
+                 class="hero-product-img" />
+            <div class="hero-label label-a">
+              <i class="bi bi-check-circle-fill text-success me-1"></i>
+              Vakum Double Wall
+            </div>
+            <div class="hero-label label-b">
+              <i class="bi bi-droplet-fill me-1" style="color:var(--dusty)"></i>
+              Anti Bocor
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STATISTIK -->
+  <section class="stats-section" id="statistik">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-label">Ringkasan</p>
+        <h2 class="section-title">Statistik Penjualan</h2>
+      </div>
+      <div class="row g-4 justify-content-center">
+
+        <div class="col-sm-6 col-md-4">
+          <div class="stat-card">
+            <div class="stat-icon-wrap">
+              <i class="bi bi-box-seam"></i>
+            </div>
+            <div class="stat-val">128</div>
+            <div class="stat-label">Total Produk</div>
+            <div class="stat-trend"><i class="bi bi-arrow-up-short"></i>+12 bulan ini</div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="stat-card">
+            <div class="stat-icon-wrap" style="background:rgba(122,158,126,0.15);">
+              <i class="bi bi-check-circle" style="color:#4a7a4e"></i>
+            </div>
+            <div class="stat-val">119</div>
+            <div class="stat-label">Stok Tersedia</div>
+            <div class="stat-trend"><i class="bi bi-arrow-up-short"></i>93% tersedia</div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="stat-card">
+            <div class="stat-icon-wrap" style="background:rgba(102,78,68,0.1);">
+              <i class="bi bi-cash-coin" style="color:var(--dusty)"></i>
+            </div>
+            <div class="stat-val" style="font-size:1.6rem;">24,5 Jt</div>
+            <div class="stat-label">Total Penjualan</div>
+            <div class="stat-trend"><i class="bi bi-arrow-up-short"></i>+8.2% bulan ini</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUK -->
+  <section class="product-section" id="produk">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-5">
+        <div>
+          <p class="section-label">Inventori</p>
+          <h2 class="section-title mb-1">Daftar Produk Tumbler</h2>
+          <p class="section-desc mb-0">Geser kartu untuk melihat semua produk</p>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div class="slider-nav">
+            <button class="slider-btn" id="prevBtn"><i class="bi bi-chevron-left"></i></button>
+            <button class="slider-btn" id="nextBtn"><i class="bi bi-chevron-right"></i></button>
+          </div>
+          <a href="tambah.html" class="btn btn-primary-custom">
+            <i class="bi bi-plus-lg me-2"></i>Tambah
+          </a>
+        </div>
+      </div>
+
+      <div class="slider-wrapper">
+        <div class="slider-track" id="sliderTrack">
+
+          <!-- TBL-001 -->
+          <div class="product-slide-card" data-id="TBL-001" data-nama="AquaCore Pro" data-harga="Rp 185.000" data-stok="12">
+            <div class="pcard-img-wrap">
+              <img src="assets/chako lab putih.jpg" alt="AquaCore Pro" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-in">Tersedia</span>
+                <span class="pcard-sku">TBL-001</span>
+              </div>
+              <h5 class="pcard-name">AquaCore Pro</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Stainless Steel · 750 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 12</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 185.000</span>
+                <div class="d-flex gap-1 align-items-center">
+                  <button class="btn-detail-buy">Beli</button>
+                  <button class="btn-detail-view">Detail</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TBL-002 -->
+          <div class="product-slide-card" data-id="TBL-002" data-nama="FrostKeep Slim" data-harga="Rp 145.000" data-stok="3">
+            <div class="pcard-img-wrap">
+              <img src="assets/chako lab.jpg" alt="FrostKeep Slim" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-low">Stok Tipis</span>
+                <span class="pcard-sku">TBL-002</span>
+              </div>
+              <h5 class="pcard-name">FrostKeep Slim</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Double Wall · 500 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 3</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 145.000</span>
+                <div class="d-flex gap-1 align-items-center">
+                  <button class="btn-detail-buy">Beli</button>
+                  <button class="btn-detail-view">Detail</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TBL-003 -->
+          <div class="product-slide-card" data-id="TBL-003" data-nama="CeramiQool 1L" data-harga="Rp 220.000" data-stok="8">
+            <div class="pcard-img-wrap">
+              <img src="assets/mash.jpg" alt="CeramiQool 1L" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-in">Tersedia</span>
+                <span class="pcard-sku">TBL-003</span>
+              </div>
+              <h5 class="pcard-name">CeramiQool 1L</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Keramik · 1000 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 8</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 220.000</span>
+                <div class="d-flex gap-1 align-items-center">
+                  <button class="btn-detail-buy">Beli</button>
+                  <button class="btn-detail-view">Detail</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TBL-004 -->
+          <div class="product-slide-card" data-id="TBL-004" data-nama="EcoSip Bamboo" data-harga="Rp 98.000" data-stok="7">
+            <div class="pcard-img-wrap">
+              <img src="assets/corkcicle.jpg" alt="EcoSip Bamboo" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-in">Tersedia</span>
+                <span class="pcard-sku">TBL-004</span>
+              </div>
+              <h5 class="pcard-name">EcoSip Bamboo</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Bambu · 600 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 7</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 98.000</span>
+                <div class="d-flex gap-1 align-items-center">
+                  <button class="btn-detail-buy">Beli</button>
+                  <button class="btn-detail-view">Detail</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TBL-005 -->
+          <div class="product-slide-card" data-id="TBL-005" data-nama="VacuMax Elite" data-harga="Rp 265.000" data-stok="15">
+            <div class="pcard-img-wrap">
+              <img src="assets/vanow.jpg" alt="VacuMax Elite" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-in">Tersedia</span>
+                <span class="pcard-sku">TBL-005</span>
+              </div>
+              <h5 class="pcard-name">VacuMax Elite</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Stainless · 900 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 15</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 265.000</span>
+                <div class="d-flex gap-1 align-items-center">
+                  <button class="btn-detail-buy">Beli</button>
+                  <button class="btn-detail-view">Detail</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TBL-006 -->
+          <div class="product-slide-card" data-id="TBL-006" data-nama="HydroZen Glass" data-harga="Rp 175.000" data-stok="6">
+            <div class="pcard-img-wrap">
+              <img src="assets/stanley blue.jpg" alt="HydroZen Glass" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-in">Tersedia</span>
+                <span class="pcard-sku">TBL-006</span>
+              </div>
+              <h5 class="pcard-name">HydroZen Glass</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Borosilikat · 650 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 6</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 175.000</span>
+                <div class="d-flex gap-1 align-items-center">
+                  <button class="btn-detail-buy">Beli</button>
+                  <button class="btn-detail-view">Detail</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TBL-007 -->
+          <div class="product-slide-card" data-id="TBL-007" data-nama="TitanFlow Pro" data-harga="Rp 340.000" data-stok="5">
+            <div class="pcard-img-wrap">
+              <img src="assets/stellata.jpg" alt="TitanFlow Pro" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-in">Tersedia</span>
+                <span class="pcard-sku">TBL-007</span>
+              </div>
+              <h5 class="pcard-name">TitanFlow Pro</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Titanium · 800 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 5</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 340.000</span>
+                <div class="d-flex gap-1 align-items-center">
+                  <button class="btn-detail-buy">Beli</button>
+                  <button class="btn-detail-view">Detail</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /slider-track -->
+      </div><!-- /slider-wrapper -->
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+  </section>
+
+  <!-- MODAL DETAIL -->
+  <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-detail">
+      <div class="modal-content modal-content-custom">
+        <div class="modal-header modal-header-custom">
+          <h5 class="modal-title-custom">
+            <i class="bi bi-box-seam me-2" style="color:var(--dusty)"></i>Detail Produk
+          </h5>
+          <button type="button" class="btn-close-custom" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="detail-img-wrap">
+            <img id="detail-img" src="" alt="" class="detail-img"
+              onerror="this.style.display='none';document.getElementById('detail-img-fallback').style.display='flex'" />
+            <div id="detail-img-fallback" class="detail-img-fallback" style="display:none;">
+              <i class="bi bi-cup-straw"></i>
+            </div>
+            <div class="detail-badge-wrap">
+              <span id="detail-badge" class="badge-stock"></span>
+            </div>
+          </div>
+          <div class="detail-info">
+            <div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+              <h4 class="detail-nama" id="detail-nama">—</h4>
+              <span class="detail-sku" id="detail-sku">—</span>
+            </div>
+            <p class="detail-category" id="detail-category"><i class="bi bi-layers me-1"></i>—</p>
+            <div class="detail-specs" id="detail-specs"></div>
+            <div class="detail-price-row">
+              <div>
+                <div class="detail-price-label">Harga</div>
+                <div class="detail-price" id="detail-harga">—</div>
+              </div>
+              <div>
+                <div class="detail-price-label">Stok</div>
+                <div class="detail-stok" id="detail-stok-val">—</div>
+              </div>
+            </div>
+            <div class="detail-desc" id="detail-desc"></div>
+          </div>
+        </div>
+        <div class="modal-footer modal-footer-custom justify-content-end">
+          <button type="button" class="btn btn-secondary-custom" data-bs-dismiss="modal">Tutup</button>
+          <button type="button" class="btn-buy-modal" id="detail-buy-btn">
+            <i class="bi bi-bag-plus me-2"></i>Beli Sekarang
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL WISHLIST -->
+  <div class="modal fade" id="wishlistModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-wishlist">
+      <div class="modal-content modal-content-custom">
+        <div class="modal-header modal-header-custom">
+          <h5 class="modal-title-custom">
+            <i class="bi bi-heart-fill me-2" style="color:var(--dusty)"></i>
+            Daftar Wishlist Saya
+            <span class="ms-2 badge-wishlist-count" id="modal-count">0 item</span>
+          </h5>
+          <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div class="modal-body modal-body-custom">
+          <div class="wishlist-empty" id="wishlist-empty">
+            <i class="bi bi-heart"></i>
+            <p>Belum ada produk di wishlist</p>
+            <small>Klik ikon ♡ di kartu produk untuk menambahkan</small>
+          </div>
+          <ul class="list-group list-group-wishlist" id="daftar-wishlist"></ul>
+        </div>
+        <div class="modal-footer modal-footer-custom">
+          <span class="wishlist-total-label">Total: <strong id="wishlist-total">Rp 0</strong></span>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-secondary-custom" data-bs-dismiss="modal">Tutup</button>
+            <button type="button" class="btn btn-danger-custom" onclick="hapusWishlist()">
+              <i class="bi bi-trash me-1"></i>Kosongkan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="footer-brand">Tumblr<span>Vault</span></div>
+          <p class="footer-desc">Sistem manajemen penjualan tumbler yang sederhana dan efisien.</p>
+          <div class="mt-4">
+            <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="footer-heading">Navigasi</div>
+          <a href="#beranda" class="footer-link">Beranda</a>
+          <a href="#statistik" class="footer-link">Statistik</a>
+          <a href="#produk" class="footer-link">Produk</a>
+          <a href="tambah.html" class="footer-link">Tambah Produk</a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="footer-heading">Kategori</div>
+          <a href="#" class="footer-link">Stainless Steel</a>
+          <a href="#" class="footer-link">Double Wall</a>
+          <a href="#" class="footer-link">Keramik</a>
+          <a href="#" class="footer-link">Bambu &amp; Eco</a>
+        </div>
+        <div class="col-md-4 col-lg-3">
+          <div class="footer-heading">Kontak</div>
+          <a href="#" class="footer-link"><i class="bi bi-envelope me-2"></i>admin@tumblrvault.id</a>
+          <a href="#" class="footer-link"><i class="bi bi-telephone me-2"></i>+62 812 3456 7890</a>
+          <a href="#" class="footer-link"><i class="bi bi-geo-alt me-2"></i>Bandung, Jawa Barat</a>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <p class="footer-bottom mb-0">© 2025 TumblrVault.</p>
+        <p class="footer-bottom mb-0">HTML · CSS · Bootstrap 5</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
