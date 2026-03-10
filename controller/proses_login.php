@@ -4,7 +4,7 @@ session_start();
 $users = [
     [
         'username' => 'admin',
-        'password' => '1234',         
+        'password' => '1234',
         'nama'     => 'Administrator',
         'role'     => 'admin',
     ],
@@ -43,10 +43,10 @@ if (!$found) {
     exit;
 }
 
-session_regenerate_id(true);            
+session_regenerate_id(true);
 $_SESSION['user']     = $found['username'];
 $_SESSION['nama']     = $found['nama'];
-$_SESSION['ro le']     = $found['role'];
+$_SESSION['role']     = $found['role'];  
 $_SESSION['login_at'] = time();
 
 if ($remember) {

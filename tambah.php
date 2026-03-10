@@ -1,3 +1,15 @@
+<?php
+ob_start();
+session_start();
+
+if (!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$namaUser = htmlspecialchars($_SESSION['nama'] ?? $_SESSION['user']);
+$roleUser = htmlspecialchars($_SESSION['role'] ?? '');
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -20,8 +32,22 @@
           <li class="nav-item"><a class="nav-link nav-link-custom" href="index.php"><i class="bi bi-house me-1"></i>Beranda</a></li>
           <li class="nav-item"><a class="nav-link nav-link-custom" href="index.php#statistik"><i class="bi bi-bar-chart me-1"></i>Statistik</a></li>
           <li class="nav-item"><a class="nav-link nav-link-custom" href="index.php#produk"><i class="bi bi-box me-1"></i>Produk</a></li>
-          <li class="nav-item ms-lg-2"><a class="btn btn-primary-custom" href="tambah.php"><i class="bi bi-plus me-1"></i>Tambah Produk</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-primary-custom active" href="tambah.php"><i class="bi bi-plus me-1"></i>Tambah Produk</a></li>
         </ul>
+
+        <div class="user-chip ms-lg-3">
+          <div class="avatar"><?php echo strtoupper(substr($namaUser, 0, 1)); ?></div>
+          <span><?php echo $namaUser; ?></span>
+          <span class="role-badge"><?php echo $roleUser; ?></span>
+        </div>
+
+        <button class="btn-logout ms-lg-2"
+          data-bs-toggle="modal" data-bs-target="#logoutModal"
+          title="Keluar dari akun">
+          <i class="bi bi-box-arrow-right"></i>
+          Logout
+        </button>
+
         <button id="btn-theme" title="Ganti Tema">
           <i class="bi bi-moon-stars-fill" id="theme-icon"></i>
           <span id="theme-label">Mode Gelap</span>
@@ -109,7 +135,7 @@
                   <label class="form-label-custom" for="harga">Harga Jual (Rp) <span class="required-star">*</span></label>
                   <div class="input-prefix-wrap">
                     <span class="input-prefix">Rp</span>
-                    <input type="number" id="harga" class="form-control form-control-custom with-prefix" placeholder="185.000" min="1000" required />
+                    <input type="number" id="harga" class="form-control form-control-custom with-prefix" placeholder="185000" min="1000" required />
                   </div>
                   <div class="invalid-feedback">Harga wajib diisi.</div>
                 </div>
@@ -131,7 +157,7 @@
               <hr class="form-divider" />
 
               <div class="d-flex gap-3 justify-content-between flex-wrap">
-                <a href="index.html" class="btn btn-outline-custom"><i class="bi bi-x-lg me-2"></i>Batal</a>
+                <a href="index.php" class="btn btn-outline-custom"><i class="bi bi-x-lg me-2"></i>Batal</a>
                 <div class="d-flex gap-2">
                   <button type="reset" class="btn btn-outline-custom" id="resetBtn"><i class="bi bi-arrow-counterclockwise me-1"></i>Reset</button>
                   <button type="submit" class="btn btn-primary-custom"><i class="bi bi-check2-circle me-2"></i>Simpan Produk</button>
@@ -143,13 +169,40 @@
             <div id="successMsg" class="success-msg d-none">
               <i class="bi bi-check-circle-fill me-2"></i>
               Produk berhasil ditambahkan!
-              <a href="index.html" class="ms-2" style="color:#4a7a4e;font-weight:600;text-decoration:underline;">Lihat Inventori →</a>
+              <a href="index.php" class="ms-2" style="color:#4a7a4e;font-weight:600;text-decoration:underline;">Lihat Inventori →</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="modal fade modal-logout" id="logoutModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:380px;">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title d-flex align-items-center gap-2">
+            <span style="width:34px;height:34px;border-radius:50%;background:rgba(102,78,68,0.1);display:flex;align-items:center;justify-content:center;">
+              <i class="bi bi-box-arrow-right" style="color:#664E44;font-size:0.9rem;"></i>
+            </span>
+            Konfirmasi Logout
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size:0.75rem;"></button>
+        </div>
+        <div class="modal-body" style="padding:16px 24px 8px;">
+          <p style="margin:0;font-size:0.88rem;color:rgba(58,44,38,0.7);">
+            Hei, <strong style="color:#664E44;"><?php echo $namaUser; ?></strong>! Yakin ingin keluar dari sesi ini?
+          </p>
+        </div>
+        <div class="modal-footer border-0 pt-0 gap-2">
+          <button type="button" class="btn-cancel-logout" data-bs-dismiss="modal">Batal</button>
+          <a href="controller/logout.php" class="btn-confirm-logout">
+            <i class="bi bi-box-arrow-right me-1"></i>Ya, Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer-custom">
     <div class="container">
@@ -160,10 +213,10 @@
         </div>
         <div class="col-6 col-md-4 col-lg-2">
           <div class="footer-heading">Navigasi</div>
-          <a href="index.html" class="footer-link">Beranda</a>
-          <a href="index.html#statistik" class="footer-link">Statistik</a>
-          <a href="index.html#produk" class="footer-link">Produk</a>
-          <a href="tambah.html" class="footer-link">Tambah Produk</a>
+          <a href="index.php" class="footer-link">Beranda</a>
+          <a href="index.php#statistik" class="footer-link">Statistik</a>
+          <a href="index.php#produk" class="footer-link">Produk</a>
+          <a href="tambah.php" class="footer-link">Tambah Produk</a>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
           <div class="footer-heading">Kategori</div>
@@ -182,7 +235,7 @@
       <hr class="footer-divider" />
       <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
         <p class="footer-bottom mb-0">© 2025 TumblrVault.</p>
-        <p class="footer-bottom mb-0">HTML · CSS · Bootstrap 5</p>
+        <p class="footer-bottom mb-0">HTML · CSS · Bootstrap 5 · PHP</p>
       </div>
     </div>
   </footer>

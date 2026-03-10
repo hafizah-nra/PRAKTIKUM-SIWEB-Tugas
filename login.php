@@ -5,15 +5,25 @@ if (isset($_SESSION["user"])) {
     header("Location: index.php");
     exit;
 }
+
+$error = $_GET['error'] ?? '';
+$errorMsg = '';
+if ($error === 'empty') {
+    $errorMsg = '<i class="bi bi-exclamation-triangle-fill me-2"></i>Username dan password wajib diisi.';
+} elseif ($error === 'invalid') {
+    $errorMsg = '<i class="bi bi-x-circle-fill me-2"></i>Username atau password salah. Silakan coba lagi.';
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
+  <title>Login – TumblrVault</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="page-login">
 
@@ -38,13 +48,23 @@ if (isset($_SESSION["user"])) {
               <path d="M12 2C9.24 2 7 4.24 7 7v1H5v14h14V8h-2V7c0-2.76-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3v1H9V7c0-1.66 1.34-3 3-3zm0 9a2 2 0 110 4 2 2 0 010-4z"/>
             </svg>
           </div>
-          <span class="login-brand-name">My App</span>
+          <span class="login-brand-name">TumblrVault</span>
         </div>
         <h1 class="login-card-title">Selamat<br><em>Datang</em></h1>
         <p class="login-card-subtitle">Masuk untuk melanjutkan perjalanan Anda</p>
       </div>
 
       <div class="login-card-body">
+
+        <?php if ($errorMsg): ?>
+        <div class="alert alert-danger d-flex align-items-center gap-2 mb-4 py-2 px-3"
+             style="border-radius:10px; font-size:0.84rem; border:none;
+                    background:rgba(201,123,90,0.12); color:#a05a2c;
+                    border-left:4px solid #c97b5a;" role="alert">
+          <?php echo $errorMsg; ?>
+        </div>
+        <?php endif; ?>
+
         <form method="POST" action="controller/proses_login.php" autocomplete="off">
 
           <div class="login-field">
@@ -91,7 +111,8 @@ if (isset($_SESSION["user"])) {
 
           <div class="login-field login-row-check">
             <label class="login-check-label">
-              <input type="checkbox" name="remember">
+              <input type="checkbox" name="remember"
+                <?php echo isset($_COOKIE['username']) && $_COOKIE['username'] !== '' ? 'checked' : ''; ?>>
               <span class="login-custom-check"></span>
               Ingat saya
             </label>
@@ -99,7 +120,7 @@ if (isset($_SESSION["user"])) {
           </div>
 
           <div class="login-divider">
-            <span></span><p>atau masuk dengan</p><span></span>
+            <span></span><p>masuk dengan akun Anda</p><span></span>
           </div>
 
           <div class="login-field">
@@ -119,6 +140,7 @@ if (isset($_SESSION["user"])) {
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function togglePassword() {
       const input = document.getElementById('password');
